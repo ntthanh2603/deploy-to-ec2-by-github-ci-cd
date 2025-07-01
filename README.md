@@ -124,9 +124,15 @@ tar xzf ./actions-runner-linux-x64-2.325.0.tar.gz
 # Configure the runner
 ./config.sh --url https://github.com/ntthanh2603/deploy-to-ec2-by-github-ci-cd --token YOUR_GENERATED_TOKEN_HERE
 
-# Install and start the service
-sudo ./svc.sh install
-sudo ./svc.sh start
+# Install and start the service (Option)
+# sudo ./svc.sh install
+# sudo ./svc.sh start
+
+# You should use "tmux" to not lose the terminal when running:
+sudo apt install tmux -y
+tmux
+./run.sh
+# Press "Ctrl + b" then "d" to detach the tmux session (runner still runs in the background).
 ```
 
 ### Step 5: Install Node.js on the Server (Optional)
