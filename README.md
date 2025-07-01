@@ -98,5 +98,5 @@ node --version
 sudo npm install pm2 -g
 
 # Create file ecosystem.config.js and run cli
-pm2 start ecosystem.config.js  --name=deploy-to-ec2-by-github-ci-cd
+pm2 start ecosystem.config.js
 ```
