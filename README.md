@@ -1,102 +1,145 @@
 <p align="center">
-  <a href="http://nestjs.com/" target="blank"><img src="https://nestjs.com/img/logo-small.svg" width="120" alt="Nest Logo" /></a>
+  <a href="http://nestjs.com/" target="blank">
+    <img src="https://nestjs.com/img/logo-small.svg" width="120" alt="Nest Logo" />
+  </a>
 </p>
 
-[circleci-image]: https://img.shields.io/circleci/build/github/nestjs/nest/master?token=abc123def456
-[circleci-url]: https://circleci.com/gh/nestjs/nest
-
-  <p align="center">A progressive <a href="http://nodejs.org" target="_blank">Node.js</a> framework for building efficient and scalable server-side applications.</p>
-    <p align="center">
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/v/@nestjs/core.svg" alt="NPM Version" /></a>
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/l/@nestjs/core.svg" alt="Package License" /></a>
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/dm/@nestjs/common.svg" alt="NPM Downloads" /></a>
-<a href="https://circleci.com/gh/nestjs/nest" target="_blank"><img src="https://img.shields.io/circleci/build/github/nestjs/nest/master" alt="CircleCI" /></a>
-<a href="https://discord.gg/G7Qnnhy" target="_blank"><img src="https://img.shields.io/badge/discord-online-brightgreen.svg" alt="Discord"/></a>
-<a href="https://opencollective.com/nest#backer" target="_blank"><img src="https://opencollective.com/nest/backers/badge.svg" alt="Backers on Open Collective" /></a>
-<a href="https://opencollective.com/nest#sponsor" target="_blank"><img src="https://opencollective.com/nest/sponsors/badge.svg" alt="Sponsors on Open Collective" /></a>
-  <a href="https://paypal.me/kamilmysliwiec" target="_blank"><img src="https://img.shields.io/badge/Donate-PayPal-ff3f59.svg" alt="Donate us"/></a>
-    <a href="https://opencollective.com/nest#sponsor"  target="_blank"><img src="https://img.shields.io/badge/Support%20us-Open%20Collective-41B883.svg" alt="Support us"></a>
-  <a href="https://twitter.com/nestframework" target="_blank"><img src="https://img.shields.io/twitter/follow/nestframework.svg?style=social&label=Follow" alt="Follow us on Twitter"></a>
+<p align="center">
+  A progressive <a href="http://nodejs.org" target="_blank">Node.js</a> framework for building efficient and scalable server-side applications.
 </p>
 
-## Description
+<p align="center">
+  <a href="https://www.npmjs.com/~nestjscore" target="_blank">
+    <img src="https://img.shields.io/npm/v/@nestjs/core.svg" alt="NPM Version" />
+  </a>
+  <a href="https://www.npmjs.com/~nestjscore" target="_blank">
+    <img src="https://img.shields.io/npm/l/@nestjs/core.svg" alt="Package License" />
+  </a>
+  <a href="https://www.npmjs.com/~nestjscore" target="_blank">
+    <img src="https://img.shields.io/npm/dm/@nestjs/common.svg" alt="NPM Downloads" />
+  </a>
+  <a href="https://circleci.com/gh/nestjs/nest" target="_blank">
+    <img src="https://img.shields.io/circleci/build/github/nestjs/nest/master" alt="CircleCI" />
+  </a>
+  <a href="https://discord.gg/G7Qnnhy" target="_blank">
+    <img src="https://img.shields.io/badge/discord-online-brightgreen.svg" alt="Discord" />
+  </a>
+  <a href="https://opencollective.com/nest#backer" target="_blank">
+    <img src="https://opencollective.com/nest/backers/badge.svg" alt="Backers on Open Collective" />
+  </a>
+  <a href="https://opencollective.com/nest#sponsor" target="_blank">
+    <img src="https://opencollective.com/nest/sponsors/badge.svg" alt="Sponsors on Open Collective" />
+  </a>
+  <a href="https://paypal.me/kamilmysliwiec" target="_blank">
+    <img src="https://img.shields.io/badge/Donate-PayPal-ff3f59.svg" alt="Donate via PayPal" />
+  </a>
+  <a href="https://opencollective.com/nest#sponsor" target="_blank">
+    <img src="https://img.shields.io/badge/Support%20us-Open%20Collective-41B883.svg" alt="Support us" />
+  </a>
+  <a href="https://twitter.com/nestframework" target="_blank">
+    <img src="https://img.shields.io/twitter/follow/nestframework.svg?style=social&label=Follow" alt="Follow us on Twitter" />
+  </a>
+</p>
 
-Instruct deploy Nestjs Github Action CI/CD + EC2
+---
 
-### All steps
+## 📦 Project Description
 
-#### Step 1: Create EC2 instance and copy file key pair ".pem" move in root folder. Connect intance in Termius and install docker, posgres ...
+This repository provides a complete guide to deploying a NestJS application using GitHub Actions for CI/CD on an AWS EC2 instance.
+
+---
+
+## 🚀 Setup Instructions
+
+### Step 1: Create and Connect to EC2 Instance
+
+1. Launch an EC2 instance on AWS and download the key pair (`.pem` file).
+2. Move the `.pem` file to your project root or local SSH directory.
+3. Connect to the instance via SSH (e.g., using Termius).
+4. Install required tools such as Docker and PostgreSQL.
 
 ```bash
-# Check server
+# Check Ubuntu version
 lsb_release -a
-# Check version docker
+
+# Verify Docker installation
 docker -v
 ```
 
-#### Step 2: Clone repository
+### Step 2: Clone the Repository and Run the App
 
-```bash
-# Clone repository in github
+```
+# Clone the GitHub repository
 git clone https://github.com/ntthanh2603/deploy-to-ec2-by-github-ci-cd.git
 
-# Move to project
+# Navigate to the project directory
 cd deploy-to-ec2-by-github-ci-cd
 
-# Build image project
+# Build the Docker image
 sudo docker build -t nestjs-app .
 
-# Run container
+# Run the Docker container
 sudo docker run -d \
   --name nestjs-backend \
   -p 3000:3000 \
   --restart unless-stopped \
   nestjs-app
 
-# Check container running
+# Check running containers
 sudo docker ps
 
-# Show logs
+# View container logs
 sudo docker logs nestjs-backend
 ```
 
-#### Step 3: Export public port:
+### Step 3: Open Port 3000 on EC2
 
--> Click this instance -> Click Security -> Click Security Group
--> Click Inbound rules -> Click Add rule -> Select Type=Custom TCP, Port range=3000
--> Click Save rules
+1. Go to your EC2 dashboard.
 
-#### Step 4: CI/CD with github and ec2, pm2
+2.Select the instance → "Security" tab → Click on the Security Group.
+
+3. Under "Inbound Rules", click Edit Inbound Rules → Add rule:
+
+- Type: Custom TCP
+- Port Range: 3000
+- Source: Anywhere (or restrict by IP)
+
+4. Save the rule.
+
+### Step 4: Set Up GitHub Actions Runner on EC2
 
 ```bash
-# Create a folder
-$ mkdir actions-runner && cd actions-runnerCopied!
-# Download the latest runner package
-$ curl -o actions-runner-linux-x64-2.325.0.tar.gz -L https://github.com/actions/runner/releases/download/v2.325.0/actions-runner-linux-x64-2.325.0.tar.gzCopied!
-# Optional: Validate the hash
-$ echo "5020da7139d85c776059f351e0de8fdec753affc9c558e892472d43ebeb518f4  actions-runner-linux-x64-2.325.0.tar.gz" | shasum -a 256 -cCopied!
-# Extract the installer
-$ tar xzf ./actions-runner-linux-x64-2.325.0.tar.gz
-# Create the runner and start the configuration experience
-$ ./config.sh --url https://github.com/ntthanh2603/deploy-to-ec2-by-github-ci-cd --token BK5GQLUHGIMFIO2UFQPUCRDIMPLY2
+# Create a directory for the runner
+mkdir actions-runner && cd actions-runner
 
+# Download the GitHub Actions runner
+curl -o actions-runner-linux-x64-2.325.0.tar.gz -L https://github.com/actions/runner/releases/download/v2.325.0/actions-runner-linux-x64-2.325.0.tar.gz
+
+# (Optional) Verify checksum
+echo "5020da7139d85c776059f351e0de8fdec753affc9c558e892472d43ebeb518f4  actions-runner-linux-x64-2.325.0.tar.gz" | shasum -a 256 -c
+
+# Extract the runner
+tar xzf ./actions-runner-linux-x64-2.325.0.tar.gz
+
+# Configure the runner
+./config.sh --url https://github.com/ntthanh2603/deploy-to-ec2-by-github-ci-cd --token YOUR_GENERATED_TOKEN_HERE
+
+# Install and start the service
 sudo ./svc.sh install
-
 sudo ./svc.sh start
+```
 
-# Install Nodejs in server
-sudo apt update
-sudo apt upgrade
+### Step 5: Install Node.js on the Server (Optional)
+
+```bash
+sudo apt update && sudo apt upgrade -y
 sudo apt install -y curl
+
+# Install Node.js v20
 curl -fsSL https://deb.nodesource.com/setup_20.x | sudo -E bash -
 sudo apt install -y nodejs
 
-# Check version Nodejs
+# Verify installation
 node --version
 
-# Install PM2
-sudo npm install pm2 -g
-
-# Create file ecosystem.config.js and run cli
-pm2 start ecosystem.config.js
 ```
