@@ -68,9 +68,9 @@ sudo docker logs nestjs-backend
 #### Step 3
 
 Export public:
-==> Click this instance ==> Click Security ==> Click Security Group
-==> Click Inbound rules ==> Click Add rule ==> Select Type=Custom TCP, Port range=3000
-==> Click Save rules
+-> Click this instance -> Click Security -> Click Security Group
+-> Click Inbound rules -> Click Add rule -> Select Type=Custom TCP, Port range=3000
+-> Click Save rules
 
 #### Step 4
 
@@ -103,4 +103,7 @@ sudo apt install -y nodejs
 
 # Check version Nodejs
 node --version
+
+# Install PM2
+sudo npm install pm2 -g
 ```
