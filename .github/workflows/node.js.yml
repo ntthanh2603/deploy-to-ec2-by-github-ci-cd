@@ -26,4 +26,4 @@ jobs:
           node-version: ${{ matrix.node-version }}
           cache: 'npm'
       - run: npm ci
-      - run: pm2 restart deploy-to-ec2-by-github-ci-cd
+      # - run: pm2 restart deploy-to-ec2-by-github-ci-cd
