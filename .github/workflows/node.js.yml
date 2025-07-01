@@ -1,4 +1,4 @@
-name: Deploy App to EC2 with Docker Compose
+name: Deploy App
 
 on:
   push:
@@ -8,7 +8,7 @@ on:
 
 jobs:
   deploy:
-    runs-on: self-hosted # Đã cài runner trên EC2
+    runs-on: self-hosted
 
     steps:
       - name: Pull latest code
