@@ -9,8 +9,9 @@ export class AppController {
   getHello(): string {
     return this.appService.getHello();
   }
-  @Post()
-  postHello(): string {
-    return this.appService.getHello();
+
+  @Get('/name')
+  getName(): string {
+    return 'Nguyen Tuan Thanh';
   }
 }
