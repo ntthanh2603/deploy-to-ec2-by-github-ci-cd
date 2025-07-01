@@ -106,4 +106,7 @@ node --version
 
 # Install PM2
 sudo npm install pm2 -g
+
+# Create file ecosystem.config.js and run cli
+pm2 start ecosystem.config.js  --name=deploy-to-aws
 ```
