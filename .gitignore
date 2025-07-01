@@ -3,6 +3,7 @@
 /node_modules
 /build
 deploy-aws.pem
+actions-runner/
 
 # Logs
 logs
