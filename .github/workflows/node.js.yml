@@ -20,5 +20,5 @@ jobs:
       - name: Rebuild and restart with Docker Compose
         run: |
           cd /home/ubuntu/deploy-to-ec2-by-github-ci-cd
-          docker compose down
-          docker compose up --build -d
+          sudo docker compose down
+          sudo docker compose up --build -d
