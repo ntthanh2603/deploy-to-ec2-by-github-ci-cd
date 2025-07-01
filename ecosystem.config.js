@@ -3,7 +3,7 @@ module.exports = {
     {
       name: 'deploy-to-ec2-by-github-ci-cd',
       script: 'docker',
-      args: 'compose up --build',
+      args: 'compose up --build -d',
       cwd: '/home/ubuntu/deploy-to-ec2-by-github-ci-cd/',
       instances: 1,
       autorestart: true,

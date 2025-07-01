@@ -25,10 +25,7 @@ Instruct deploy Nestjs Github Action CI/CD + EC2
 
 ### All steps
 
-#### Step 1
-
-Create EC2 instance and copy file key pair ".pem" move in root folder.
-Connect intance in Termius and install docker, posgres ...
+#### Step 1: Create EC2 instance and copy file key pair ".pem" move in root folder. Connect intance in Termius and install docker, posgres ...
 
 ```bash
 # Check server
@@ -37,9 +34,7 @@ lsb_release -a
 docker -v
 ```
 
-#### Step 2
-
-Clone repository
+#### Step 2: Clone repository
 
 ```bash
 # Clone repository in github
@@ -65,18 +60,13 @@ sudo docker ps
 sudo docker logs nestjs-backend
 ```
 
-#### Step 3
+#### Step 3: Export public port:
 
-Export public:
 -> Click this instance -> Click Security -> Click Security Group
 -> Click Inbound rules -> Click Add rule -> Select Type=Custom TCP, Port range=3000
 -> Click Save rules
 
-#### Step 4
-
-Url: https://github.com/ntthanh2603/deploy-to-ec2-by-github-ci-cd/settings/actions/runners/new?arch=x64&os=linux
-
-##### Running command
+#### Step 4: CI/CD with github and ec2, pm2
 
 ```bash
 # Create a folder
@@ -108,5 +98,5 @@ node --version
 sudo npm install pm2 -g
 
 # Create file ecosystem.config.js and run cli
-pm2 start ecosystem.config.js  --name=deploy-to-aws
+pm2 start ecosystem.config.js  --name=deploy-to-ec2-by-github-ci-cd
 ```
