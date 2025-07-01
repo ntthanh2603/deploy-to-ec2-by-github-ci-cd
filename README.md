@@ -21,11 +21,86 @@
 
 ## Description
 
-Instruct deploy Nestjs Github Action CI/CD + EC2 + PM2
+Instruct deploy Nestjs Github Action CI/CD + EC2
 
 ### All steps
 
 #### Step 1
 
-Create EC2 instance and copy file key pair ".pem" move in root folder
+Create EC2 instance and copy file key pair ".pem" move in root folder.
 Connect intance in Termius and install docker, posgres ...
+
+```bash
+# Check server
+lsb_release -a
+# Check version docker
+docker -v
+```
+
+#### Step 2
+
+Clone repository
+
+```bash
+# Clone repository in github
+git clone https://github.com/ntthanh2603/deploy-to-ec2-by-github-ci-cd.git
+
+# Move to project
+cd deploy-to-ec2-by-github-ci-cd
+
+# Build image project
+sudo docker build -t nestjs-app .
+
+# Run container
+sudo docker run -d \
+  --name nestjs-backend \
+  -p 3000:3000 \
+  --restart unless-stopped \
+  nestjs-app
+
+# Check container running
+sudo docker ps
+
+# Show logs
+sudo docker logs nestjs-backend
+```
+
+#### Step 3
+
+Export public:
+==> Click this instance ==> Click Security ==> Click Security Group
+==> Click Inbound rules ==> Click Add rule ==> Select Type=Custom TCP, Port range=3000
+==> Click Save rules
+
+#### Step 4
+
+Url: https://github.com/ntthanh2603/deploy-to-ec2-by-github-ci-cd/settings/actions/runners/new?arch=x64&os=linux
+
+##### Running command
+
+```bash
+# Create a folder
+$ mkdir actions-runner && cd actions-runnerCopied!
+# Download the latest runner package
+$ curl -o actions-runner-linux-x64-2.325.0.tar.gz -L https://github.com/actions/runner/releases/download/v2.325.0/actions-runner-linux-x64-2.325.0.tar.gzCopied!
+# Optional: Validate the hash
+$ echo "5020da7139d85c776059f351e0de8fdec753affc9c558e892472d43ebeb518f4  actions-runner-linux-x64-2.325.0.tar.gz" | shasum -a 256 -cCopied!
+# Extract the installer
+$ tar xzf ./actions-runner-linux-x64-2.325.0.tar.gz
+# Create the runner and start the configuration experience
+$ ./config.sh --url https://github.com/ntthanh2603/deploy-to-ec2-by-github-ci-cd --token BK5GQLUHGIMFIO2UFQPUCRDIMPLY2
+
+sudo ./svc.sh install
+
+sudo ./svc.sh start
+
+# Install Nodejs in server
+sudo apt update
+sudo apt upgrade
+sudo apt install -y curl
+curl -fsSL https://deb.nodesource.com/setup_20.x | sudo -E bash -
+sudo apt install -y nodejs
+
+# Check version Nodejs
+node --version
+```
