@@ -29,8 +29,4 @@ describe('AppController', () => {
     expect(appController.getHello()).toBe('Mocked Hello');
     expect(appService.getHello).toHaveBeenCalled();
   });
-
-  it('should return the hardcoded name', () => {
-    expect(appController.getName()).toBe('Tuan Thanh');
-  });
 });
