@@ -31,6 +31,6 @@ describe('AppController', () => {
   });
 
   it('should return the hardcoded name', () => {
-    expect(appController.getName()).toBe('Nguyen Tuan Thanh');
+    expect(appController.getName()).toBe('Tuan Thanh');
   });
 });
